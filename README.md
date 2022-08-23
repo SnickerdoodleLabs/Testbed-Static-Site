@@ -1,6 +1,6 @@
 ![Snickerdoodle Protocol](/snickerdoodle_horizontal_notab.png)
 
-# [WebThree.love](https://webthree.love)
+# [WebThree.love](https://www.webthree.love)
 
 This is a simple github page site for testing Snickerdoodle Insight Platform campaign setup. 
 
