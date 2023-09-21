@@ -24,9 +24,9 @@ In your html header (or other appropriate place) call [`snickerdoodle.integrateS
 ```
 snickerdoodle.integrateSnickerdoodle({
              primaryInfuraKey: $INFURA_KEY$,
-             ankrApiKey: "$ANKR_KEY",
-             covalentApiKey: "$COVALENT_KEY",
-             poapApiKey: "$POAP_KEY",
+             ankrApiKey: $ANKR_KEY,
+             covalentApiKey: $COVALENT_KEY,
+             poapApiKey: $POAP_KEY,
              // If you'd like your site to use WalletConnect, provide a ProjectID provisioned
              // from https://cloud.walletconnect.com so use's can connect their mobile wallets
              // NOTE: Snickerdoodle does not provide a default WalletConnect projectID, you must
