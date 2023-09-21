@@ -1,34 +1,53 @@
-![Snickerdoodle Protocol](/snickerdoodle_horizontal_notab.png)
+[![Snickerdoodle Protocol](/snickerdoodle_horizontal_notab.png)](https://snickerdoodle.com)
 
-# [WebThree.love](https://www.webthree.love)
+# Testbed for Static Site Web Integration Package
 
-This is a simple github page site for testing Snickerdoodle Insight Platform campaign setup. 
+This is a simple static html page for testing [Snickerdoodle](https://snickerdoodle.com) web-native analytics package. Its meant to 
+serve as an example of how to add Snickerdoodle analytics to an existing static html page.
 
-## Testing Instructions
+## 1. Add the `snickerdoodle.js` Script to Your Header
 
-### Step 1
+Adding [`snickerdoodle.js`](/index.html#L58) to the header of your index.html page will add all wallet connection, airdrop, and analytics 
+capabilities supported by Snickerdoodle to your site. 
 
-Create a reward in the Snickerdoodle Insight platform. 
+```
+<script src="https://webpackage.snickerdoodle.com/snickerdoodle.js"></script>
+```
 
-### Step 2
+## 2. Configure Web3 API Keys
 
-Create a data campaign in the Snickerdoodle Insight platform and link the reward from step 1. 
+Snickerdoodle's analytics package comes with default web3 data provider API keys. However, if you have a large number of user's we strongly 
+recommend adding your own web3 API keys to prevent throttling and poor data pipeline performance. 
 
-### Step 3
+In your html header (or other appropriate place) call [`snickerdoodle.integrateSnickerdoodle()`](/index.html#L77) with your optional web3 API keys:
 
-After successfully creating a data campaign copy the contract address from the TXT record information on the campaign card. 
+```
+snickerdoodle.integrateSnickerdoodle({
+             primaryInfuraKey: $INFURA_KEY$,
+             ankrApiKey: "$ANKR_KEY",
+             covalentApiKey: "$COVALENT_KEY",
+             poapApiKey: "$POAP_KEY",
+             // If you'd like your site to use WalletConnect, provide a ProjectID provisioned
+             // from https://cloud.walletconnect.com so use's can connect their mobile wallets
+             // NOTE: Snickerdoodle does not provide a default WalletConnect projectID, you must
+             // your own to enable its functionality. 
+             walletConnect: { 
+              projectId: $WALLET_CONNECT_PROJECT_ID,
+              metadata_name: "Webthree.Love",
+              metadata_description: "Static site integration testbed.",
+              metadata_url: "https://www.webthree.love",
+             },
+           },
+         );
+```
 
-### Step 4
+If you choose to rely on the default API keys for your site, you're code should simply look like this:
 
-Log into [Namecheap](https://www.namecheap.com) and update the TXT record for `snickerdoodle-protocol.webthree.love` with the
-contract address copied from step 3. 
+```
+snickerdoodle.integrationSnickerdoodle({});
+```
 
-### Step 5
+## 3. Add a TXT Record to Your Site's DNS Settings
 
-Wait a few min for the TXT record update to propagate, then visit https://www.webthree.love to confirm if the campaign invitation is
-showing up properly. 
-
-### Step 6
-
-Accept the invitation and confirm that you data wallet responded to any queries by going back to the Insight Platform and inspecting
-any associated dashboards linked to the campaign you created in Step 2. 
+You must add a single TXT Record to your site's DNS records so that the analytics package will trigger the user opt-in popup message
+when a user connects their wallet to your site. See our [official documentation](https://marketing-docs.snickerdoodle.com/integration-instructions/react-apps#3.-add-a-txt-record-to-your-react-apps-domain) for more information. 
